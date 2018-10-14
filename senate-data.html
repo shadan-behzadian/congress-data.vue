@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Senate Data</title>
+    <!-- using these lines to make the page responsive-->
+    <!--copy paste from w3school-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-colorbox@1.6.4/example1/colorbox.css">
+          
+<!--
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/fh-3.1.3/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/fh-3.1.3/datatables.min.js"></script>
+-->
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css">
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
+    
+</head>
+    
+    
+    <!---TO ADD COLORBOX YOU NEEDED AN EXTERNAL LIBARRAY OF JQUERY AND COLORBOX.JS AND COLORBOX.CSS YOU WERE MISSING THE COLORBOX.CSS LINK AND YOU HAD STYLING ISSUE FOR 2 HOURS 
+    YOU ADDED A LINE OF CODE OF JQUERY TO YOUR JAVASCRIPT TO ADD LIGHTBOX YOU ADDED IT IN A "LIFE-HOOK" = "UPDATED" SO THAT THIS HAPPENS AFTER VUE HAS FILLED THE TABLE-->
+    
+    <!--YOU ONLY DID THIS LIGHTBOX FOR SENATE-DATA AND HOUSE-DATA-->
+
+
+
+
+<body class="container">
+
+
+
+      <div class="row">
+
+        <div>
+            <div class="col-sm-1">
+                <img src="downloadmagnifier.png" class="img-circle img-thumbnail img-responsive" alt="TGIF Logo">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right">
+        <a herf="mailto:info@Tgif.net"> <span class="glyphicon glyphicon-envelope"></span>info@Tgif.net</a>
+    </div>
+   
+     
+     <nav class="navbar navbar-default">
+        <div>
+            <ul class="nav navbar-nav">
+                <li><a href="home.html">Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" >Congress 113<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="senate-data.html">Senate</a></li>
+                        <li><a href="house-data.html">House</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" >Attendance<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="senate-attendance-starter-page.html">Senate</a></li>
+                        <li><a href="house-attendance-starter-page.html">House</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Party Loyalty<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="senate-party-loyalty-starter-page.html">Senate</a></li>
+                        <li><a href="house-party-loyalty-page%20copy.html">House</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+    <header>
+        <div>
+        </div>
+    </header>
+    <!--Table container-->
+    <div>
+
+        <div class=" row">
+            <h2>Senators</h2>
+
+            <p class="col-sm-8">First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
+
+        </div>
+
+        <div class="row">
+        <div id="checkboxes" class="col-sm-11">
+            Filter Party By :
+
+            <label>Republican <input  id="republican" type="checkbox" name="republican" ></label>
+            <label>  Democrate <input id="democrate" type="checkbox" name= "democrate" ></label>
+            <label>Independent <input  id="independent" type="checkbox" name="independent" ></label>
+
+        </div>
+        
+    
+        <select id="dropdown" class="col-sm-1">
+            <option >All States</option>
+            
+            
+            
+        </select>
+        </div>
+        
+        
+        
+      
+
+
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed " id="senateDataTable">
+                <thead>
+                    <th v-for = "header in headers">{{header}}</th>
+
+                </thead>
+                
+                
+                <tbody >
+
+                <tr v-for ="member in memberOfSenate">
+                    <td><a v-bind:href="member.url" class="colorbox" >{{member.first_name}}{{member.middle_name}}{{member.last_name}}</a></td>
+                    <td>{{member.party}}</td>
+                    <td>{{member.state}}</td>
+                    <td>{{member.seniority}}</td>
+                    <td>{{member.votes_with_party_pct}}</td>
+                    
+                </tr>
+                    
+                </tbody>
+            </table>
+            
+  
+
+        </div>
+
+
+        <div class="container page-footer text-center bg-info">
+            <p> &copy; 2016 TGIF | All Rights Reserved</p>
+        </div>
+
+    </div>
+    
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--<script src="pro-congress-113-senate.js"></script>-->
+    <script src="mainSenate.js"></script>
+   
+
+
+</body>
+
+</html>
